@@ -3,47 +3,159 @@
   "features": [
     {
       "type": "Feature",
-      "properties": { "nama": "Alun-Alun Prabumulih" },
+      "properties": {
+        "Nama": "Gedung Bulutangkis"
+      },
       "geometry": {
-        "type": "Point",
-        "coordinates": [104.2436833, -3.4213707]
-      }
+        "coordinates": [
+          104.79905770632814,
+          -2.97290010523146
+        ],
+        "type": "Point"
+      },
+      "id": 4
     },
     {
       "type": "Feature",
-      "properties": { "nama": "Stasiun Prabumulih" },
+      "properties": {
+        "Nama": "Lapangan Basket"
+      },
       "geometry": {
-        "type": "Point",
-        "coordinates": [104.2485, -3.4350]
-      }
+        "coordinates": [
+          104.79877559726026,
+          -2.973887964044053
+        ],
+        "type": "Point"
+      },
+      "id": 5
     },
     {
       "type": "Feature",
-      "properties": { "nama": "Lapangan Prabumulih (Area)" },
+      "properties": {
+        "Nama": "SMP PT.Pusri"
+      },
       "geometry": {
-        "type": "Polygon",
+        "coordinates": [
+          104.79949759565096,
+          -2.9735709455336377
+        ],
+        "type": "Point"
+      },
+      "id": 6
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nama": "Bulutangkis"
+      },
+      "geometry": {
         "coordinates": [
           [
-            [104.242, -3.420],
-            [104.245, -3.420],
-            [104.245, -3.423],
-            [104.242, -3.423],
-            [104.242, -3.420]
+            [
+              104.79899658503592,
+              -2.9730281563133047
+            ],
+            [
+              104.79920027712649,
+              -2.9730717740381323
+            ],
+            [
+              104.79907696730925,
+              -2.972736073138009
+            ],
+            [
+              104.79899658503592,
+              -2.9730281563133047
+            ]
           ]
-        ]
-      }
+        ],
+        "type": "Polygon"
+      },
+      "id": 7
     },
     {
       "type": "Feature",
-      "properties": { "nama": "Jalan Utama" },
+      "properties": {
+        "Nama": "SMP PT.Pusri"
+      },
       "geometry": {
-        "type": "LineString",
         "coordinates": [
-          [104.240, -3.422],
-          [104.245, -3.425],
-          [104.250, -3.428]
-        ]
-      }
+          [
+            [
+              104.79944108375742,
+              -2.9736908658406804
+            ],
+            [
+              104.79960397000781,
+              -2.9736989676168974
+            ],
+            [
+              104.79954382575494,
+              -2.973378868709773
+            ],
+            [
+              104.79944108375742,
+              -2.9736908658406804
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": 8
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nama": "Lapangan Basket"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              104.7986761647906,
+              -2.9740267170386403
+            ],
+            [
+              104.79888901754242,
+              -2.9740363038827553
+            ],
+            [
+              104.79877256583262,
+              -2.9736722384095913
+            ],
+            [
+              104.7986761647906,
+              -2.9740267170386403
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": 9
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nama": "Jl.SMP Menuju Lapangan dan Gedung"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            104.79948398638163,
+            -2.973497180550794
+          ],
+          [
+            104.79879431724254,
+            -2.9739389746620617
+          ],
+          [
+            104.79908114714368,
+            -2.972899025154831
+          ]
+        ],
+        "type": "LineString"
+      },
+      "id": 10
     }
   ]
 }

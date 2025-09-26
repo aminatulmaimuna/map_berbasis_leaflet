@@ -1,55 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map Lokasi Penting Prabumulih</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <meta charset="UTF-8">
+  <title>Map Lokasi Penting Palembang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <style>
+    #map {
+      width: 100%;
+      height: 600px;
+    }
+  </style>
 </head>
 <body>
-    <h1> Map Lokasi Penting di Prabumulih </h1>
-    <div id="map" style="height: 500px;"></div> 
+  <h2>Map Lokasi Penting Palembang</h2>
+  <div id="map"></div>
 
-    <script>
-        // Inisialisasi map di pusat Prabumulih
-        var map = L.map('map').setView([-3.4213707, 104.2436833], 12);
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Inisialisasi peta
+    var map = L.map('map').setView([-2.97, 104.80], 17); // fokus ke area Palembang
 
-        // Tambah layer OSM
-        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    // Tambahkan tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
+    }).addTo(map);
 
-        // Tambah data GeoJSON dari file
-        fetch("map.geojson")
-        .then(res => res.json())
-        .then(data => L.geoJSON(data, {
-            onEachFeature: function(feature, layer) {
-                if (feature.properties && feature.properties.nama) {
-                    layer.bindPopup(feature.properties.nama);
-                }
-            }
-        }).addTo(map));
+    // Data GeoJSON (hanya lokasi penting Palembang)
+    var geojsonData = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": { "Nama": "Gedung Bulutangkis" },
+          "geometry": { "type": "Point", "coordinates": [104.79905770632814,-2.97290010523146] }
+        },
+        {
+          "type": "Feature",
+          "properties": { "Nama": "Lapangan Basket" },
+          "geometry": { "type": "Point", "coordinates": [104.79877559726026,-2.973887964044053] }
+        },
+        {
+          "type": "Feature",
+          "properties": { "Nama": "SMP PT.Pusri" },
+          "geometry": { "type": "Point", "coordinates": [104.79949759565096,-2.9735709455336377] }
+        },
+        {
+          "type": "Feature",
+          "properties": { "Nama": "Bulutangkis" },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[[104.79899658503592,-2.9730281563133047],[104.79920027712649,-2.9730717740381323],[104.79907696730925,-2.972736073138009],[104.79899658503592,-2.9730281563133047]]]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": { "Nama": "SMP PT.Pusri" },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[[104.79944108375742,-2.9736908658406804],[104.79960397000781,-2.9736989676168974],[104.79954382575494,-2.973378868709773],[104.79944108375742,-2.9736908658406804]]]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": { "Nama": "Lapangan Basket" },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[[104.7986761647906,-2.9740267170386403],[104.79888901754242,-2.9740363038827553],[104.79877256583262,-2.9736722384095913],[104.7986761647906,-2.9740267170386403]]]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": { "Nama": "Jl.SMP Menuju Lapangan dan Gedung" },
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [[104.79948398638163,-2.973497180550794],[104.79879431724254,-2.9739389746620617],[104.79908114714368,-2.972899025154831]]
+          }
+        }
+      ]
+    };
 
-        // ===== Point (Marker manual) =====
-        L.marker([-3.4213707, 104.2436833]).addTo(map)
-          .bindPopup("Titik Pusat Prabumulih (Point)");
+    // Tambahkan GeoJSON ke peta
+    var layerGeo = L.geoJSON(geojsonData, {
+      onEachFeature: function (feature, layer) {
+        if (feature.properties) {
+          let popupContent = "";
+          for (let key in feature.properties) {
+            popupContent += "<b>" + key + ":</b> " + feature.properties[key] + "<br>";
+          }
+          layer.bindPopup(popupContent);
+        }
+      },
+      style: function(feature) {
+        if (feature.geometry.type === "Polygon") {
+          return { color: "blue", fillColor: "lightblue", fillOpacity: 0.5 };
+        }
+        if (feature.geometry.type === "LineString") {
+          return { color: "red", weight: 3 };
+        }
+      },
+      pointToLayer: function(feature, latlng) {
+        return L.marker(latlng);
+      }
+    }).addTo(map);
 
-        // ===== Line (Polyline) =====
-        var lineCoords = [
-          [-3.422, 104.24],
-          [-3.425, 104.245],
-          [-3.428, 104.25]
-        ];
-        L.polyline(lineCoords, {color: 'red'}).addTo(map)
-          .bindPopup("Contoh Garis (Line)");
-
-        // ===== Polygon =====
-        var polygonCoords = [
-          [-3.420, 104.24],
-          [-3.423, 104.246],
-          [-3.426, 104.242]
-        ];
-        L.polygon(polygonCoords, {color: 'blue', fillOpacity: 0.3}).addTo(map)
-          .bindPopup("Contoh Polygon (Area)");
-    </script>
+    // Sesuaikan zoom agar semua fitur terlihat
+    map.fitBounds(layerGeo.getBounds());
+  </script>
 </body>
 </html>
