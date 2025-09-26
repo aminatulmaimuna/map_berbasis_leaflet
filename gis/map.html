@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Lokasi Penting Prabumulih</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <h1> Map Lokasi Penting di Prabumulih </h1>
+    <div id="map" style="height: 500px;"></div> 
+
+    <script>
+        // Inisialisasi map di pusat Prabumulih
+        var map = L.map('map').setView([-3.4213707, 104.2436833], 12);
+
+        // Tambah layer OSM
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        // Tambah data GeoJSON dari file
+        fetch("map.geojson")
+        .then(res => res.json())
+        .then(data => L.geoJSON(data, {
+            onEachFeature: function(feature, layer) {
+                if (feature.properties && feature.properties.nama) {
+                    layer.bindPopup(feature.properties.nama);
+                }
+            }
+        }).addTo(map));
+
+        // ===== Point (Marker manual) =====
+        L.marker([-3.4213707, 104.2436833]).addTo(map)
+          .bindPopup("Titik Pusat Prabumulih (Point)");
+
+        // ===== Line (Polyline) =====
+        var lineCoords = [
+          [-3.422, 104.24],
+          [-3.425, 104.245],
+          [-3.428, 104.25]
+        ];
+        L.polyline(lineCoords, {color: 'red'}).addTo(map)
+          .bindPopup("Contoh Garis (Line)");
+
+        // ===== Polygon =====
+        var polygonCoords = [
+          [-3.420, 104.24],
+          [-3.423, 104.246],
+          [-3.426, 104.242]
+        ];
+        L.polygon(polygonCoords, {color: 'blue', fillOpacity: 0.3}).addTo(map)
+          .bindPopup("Contoh Polygon (Area)");
+    </script>
+</body>
+</html>

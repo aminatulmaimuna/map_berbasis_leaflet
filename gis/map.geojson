@@ -1,0 +1,49 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "nama": "Alun-Alun Prabumulih" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [104.2436833, -3.4213707]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "nama": "Stasiun Prabumulih" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [104.2485, -3.4350]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "nama": "Lapangan Prabumulih (Area)" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [104.242, -3.420],
+            [104.245, -3.420],
+            [104.245, -3.423],
+            [104.242, -3.423],
+            [104.242, -3.420]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "nama": "Jalan Utama" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [104.240, -3.422],
+          [104.245, -3.425],
+          [104.250, -3.428]
+        ]
+      }
+    }
+  ]
+}
